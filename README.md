@@ -37,6 +37,7 @@ The project leverages a modern, serverless stack optimized for speed and real-ti
 ## 🔍 Code Highlight: Transactional Reservation Logic
 Rather than relying on basic UI state, the reservation system securely interfaces with the Supabase backend to ensure data integrity during the booking process:
 
+```
 typescript
 const handlePaymentSubmit = async () => {
   // 1. Verify Authentication State
@@ -58,8 +59,10 @@ const handlePaymentSubmit = async () => {
   // 4. Trigger UI Re-render
   fetchParkingSlots(); 
 };
+```
+---
 
-##🛠️ Local Setup Instructions
+##  🛠️ Local Setup Instructions
 To run this project locally on your machine:
 
 Clone the repository: git clone https://github.com/abdosmh423-oss/parksmart.git
