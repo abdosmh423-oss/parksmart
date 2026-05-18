@@ -1,34 +1,43 @@
-🚗 ParkSmart: Real-Time Parking Management System
+# 🚗 ParkSmart: Real-Time Parking Management System
+
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
 ParkSmart is a full-stack, real-time Minimum Viable Product (MVP) designed to solve urban parking congestion. It allows users to view live parking availability, reserve spots via a simulated payment gateway, and provides administrators with a high-level dashboard to monitor capacity.
 
-🔗 Project Links
-Live Deployment: [Insert Vercel Link Here]
+### 🔗 Project Links
+* **Live Deployment:** [Insert Vercel Link Here]
+* **Video Demonstration:** [Insert Video Link Here]
 
-Video Demonstration: [Insert Video Link Here]
+---
 
-🎯 Core Features & Business Requirements
+## 🎯 Core Features & Business Requirements
+
 This MVP was built to specifically address the core requirements outlined in the ParkSmart engineering specification:
 
-Secure User Authentication (BR-01, BR-02): Handled via Supabase Auth. Users can securely create accounts and log in. The system strictly prevents unauthenticated users from making reservations.
+1. **Secure User Authentication (BR-01, BR-02):** Handled via Supabase Auth. Users can securely create accounts and log in. The system strictly prevents unauthenticated users from making reservations.
+2. **Real-Time Availability Dashboard (BR-09, BR-11):** Fetches live data from a PostgreSQL database. UI dynamically renders status badges (Available/Occupied) and disables interactions for booked spots.
+3. **Reservation & Payment Gateway (BR-13, BR-14):** Features a polished, simulated credit-card checkout flow. Upon completion, the system instantly executes a state update, writing the reservation to the database and marking the space as unavailable to prevent double-booking.
+4. **Administrative Control Center (BR-12):** A dedicated `/admin` route providing a high-level statistical overview of total capacity versus occupied spaces, along with tools to provision new parking zones into the live grid.
 
-Real-Time Availability Dashboard (BR-09, BR-11): Fetches live data from a PostgreSQL database. UI dynamically renders status badges (Available/Occupied) and disables interactions for booked spots.
+---
 
-Reservation & Payment Gateway (BR-13, BR-14): Features a polished, simulated credit-card checkout flow. Upon completion, the system instantly executes a state update, writing the reservation to the database and marking the space as unavailable to prevent double-booking.
+## 💻 Technical Architecture
 
-Administrative Control Center (BR-12): A dedicated /admin route providing a high-level statistical overview of total capacity versus occupied spaces, along with tools to provision new parking zones into the live grid.
-
-💻 Technical Architecture
 The project leverages a modern, serverless stack optimized for speed and real-time data sync.
 
-Frontend: Built with Next.js (App Router) and React.
+* **Frontend:** Built with **Next.js (App Router)** and **React**.
+* **Styling:** Fully responsive UI constructed with **Tailwind CSS**.
+* **Backend as a Service (BaaS):** **Supabase** handles the PostgreSQL database and user authentication.
+* **Hosting:** Deployed via **Vercel** for continuous integration and global edge-network delivery.
 
-Styling: Fully responsive UI constructed with Tailwind CSS.
+---
 
-Backend as a Service (BaaS): Supabase handles the PostgreSQL database and user authentication.
-
-Hosting: Deployed via Vercel for continuous integration and global edge-network delivery.
-🔍 Code Highlight: Transactional Reservation Logic
+## 🔍 Code Highlight: Transactional Reservation Logic
 Rather than relying on basic UI state, the reservation system securely interfaces with the Supabase backend to ensure data integrity during the booking process:
+
+typescript
 const handlePaymentSubmit = async () => {
   // 1. Verify Authentication State
   const { data: { user } } = await supabase.auth.getUser();
@@ -49,7 +58,8 @@ const handlePaymentSubmit = async () => {
   // 4. Trigger UI Re-render
   fetchParkingSlots(); 
 };
-🛠️ Local Setup Instructions
+
+##🛠️ Local Setup Instructions
 To run this project locally on your machine:
 
 Clone the repository: git clone https://github.com/abdosmh423-oss/parksmart.git
